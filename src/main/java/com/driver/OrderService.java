@@ -19,6 +19,10 @@ public class OrderService {
         orderRepository.addDeliveryPartner(partnerId);
     }
 
+    public void addOrderPartnerPair(String orderId, String partnerId){
+        orderRepository.addOrderPartnerPair(orderId, partnerId);
+    }
+
     public Order getOrderById(String id){
         return orderRepository.getOrderById(id);
     }
@@ -31,7 +35,31 @@ public class OrderService {
         return orderRepository.getOrderCountByPartnerId(id);
     }
 
+    public List<String> getOrdersByPartnerId(String partnerId) {
+        return orderRepository.getOrdersByPartnerById(partnerId);
+    }
+
     public List<String> getAllOrders(){
         return orderRepository.getAllOrders();
+    }
+
+    public Integer getCountOfUnassignedOrders(){
+        return orderRepository.getCountOfUnassignedOrders();
+    }
+
+    public Integer getOrdersLeftAfterGivenTimeByPartnerId(String time, String partnerId) {
+        return orderRepository.getOrdersLeftAfterGivenTimeByPartnerId(time, partnerId);
+    }
+
+    public String getLastDeliveryTimeByPartnerId(String partnerId) {
+        return orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
+    }
+
+    public void deletePartnerById(String id) {
+        orderRepository.deletePartnerById(id);
+    }
+
+    public void deleteByOrderId(String id) {
+        orderRepository.deleteByOrderId(id);
     }
 }
