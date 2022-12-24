@@ -46,8 +46,8 @@ public class OrderController {
 
         Order order= null;
         //order should be returned with an orderId.
-        order = orderService.getOrderById(orderId);
-        return new ResponseEntity<>(order, HttpStatus.CREATED);
+        //order = orderService.getOrderById(orderId);
+        return new ResponseEntity<>(orderService.getOrderById(orderId), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-partner-by-id/{partnerId}")
@@ -57,7 +57,7 @@ public class OrderController {
         deliveryPartner = orderService.getPartnerById(partnerId);
         //deliveryPartner should contain the value given by partnerId
 
-        return new ResponseEntity<>(deliveryPartner, HttpStatus.CREATED);
+        return new ResponseEntity<>(orderService.getPartnerById(partnerId), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-order-count-by-partner-id/{partnerId}")
@@ -67,7 +67,7 @@ public class OrderController {
 
         //orderCount should denote the orders given by a partner-id
         orderCount = orderService.getOrderCountByPartnerId(partnerId);
-        return new ResponseEntity<>(orderCount, HttpStatus.CREATED);
+        return new ResponseEntity<>(orderService.getOrderCountByPartnerId(partnerId), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-orders-by-partner-id/{partnerId}")
@@ -76,7 +76,7 @@ public class OrderController {
 
         //orders should contain a list of orders by PartnerId
         orders = orderService.getOrdersByPartnerId(partnerId);
-        return new ResponseEntity<>(orders, HttpStatus.CREATED);
+        return new ResponseEntity<>(orderService.getOrdersByPartnerId(partnerId), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-all-orders")
@@ -84,7 +84,7 @@ public class OrderController {
         List<String> orders = null;
         orders = orderService.getAllOrders();
         //Get all orders
-        return new ResponseEntity<>(orders, HttpStatus.CREATED);
+        return new ResponseEntity<>(orderService.getAllOrders(), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-count-of-unassigned-orders")
@@ -93,7 +93,7 @@ public class OrderController {
 
         //Count of orders that have not been assigned to any DeliveryPartner
         countOfOrders = orderService.getCountOfUnassignedOrders();
-        return new ResponseEntity<>(countOfOrders, HttpStatus.CREATED);
+        return new ResponseEntity<>(orderService.getCountOfUnassignedOrders(), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-count-of-orders-left-after-given-time/{partnerId}")
@@ -103,7 +103,7 @@ public class OrderController {
 
         //countOfOrders that are left after a particular time of a DeliveryPartner
         countOfOrders = orderService.getOrdersLeftAfterGivenTimeByPartnerId(time, partnerId);
-        return new ResponseEntity<>(countOfOrders, HttpStatus.CREATED);
+        return new ResponseEntity<>(orderService.getOrdersLeftAfterGivenTimeByPartnerId(time, partnerId), HttpStatus.CREATED);
     }
 
     @GetMapping("/get-last-delivery-time/{partnerId}")
@@ -112,7 +112,7 @@ public class OrderController {
 
         //Return the time when that partnerId will deliver his last delivery order.
         time = orderService.getLastDeliveryTimeByPartnerId(partnerId);
-        return new ResponseEntity<>(time, HttpStatus.CREATED);
+        return new ResponseEntity<>(orderService.getLastDeliveryTimeByPartnerId(partnerId), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete-partner-by-id/{partnerId}")
